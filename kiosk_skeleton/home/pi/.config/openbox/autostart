@@ -61,6 +61,12 @@ then
 	xrandr --output "${MONITOR}" --rotate ${ROTATE_SCREEN}	
 fi
 
+# run screen-setup.sh (if exists)
+SCREEN_SETUP="/boot/firmware/screen-setup.sh"
+if [ -f "${SCREEN_SETUP}" ]; then
+	bash "${SCREEN_SETUP}"
+fi
+
 # enable/disable dark mode
 DARK_MODE=$(get-ini /boot/firmware/kioskbrowser.ini browser darkmode)
 if [ "${DARK_MODE}" -eq 1 ]

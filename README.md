@@ -104,6 +104,9 @@ The network configuration can be overridden by placing a file `network-interface
 It will be made available as `/etc/network/interfaces`. See [`kiosk-set-network-config`](https://github.com/Manawyrm/AnotterKiosk/blob/main/kiosk_skeleton/usr/bin/kiosk-set-network-config)
 for the defaults.
 
+For screen setups more complex than what can be configured in `kioskbrowser.ini`, place a shell script named `screen-setup.sh`
+on the FAT32 partition. It runs after the screen settings from `kioskbrowser.ini` have been applied.
+
 ## HTTP watchdog functionality
 Browsers are complex, networks are unstable and software can be buggy.   
 In order to get the highest reliability possible, self-hosted websites can be modified to include a heartbeat/watchdog functionality.
