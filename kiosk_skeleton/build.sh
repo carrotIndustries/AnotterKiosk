@@ -66,6 +66,7 @@ rm /etc/hostname || true
 rm /etc/localtime || true
 rm /etc/resolv.conf || true
 rm /etc/console-setup/cached_UTF-8_del.kmap.gz || true
+rm /etc/network/interfaces || true
 mkdir -p /etc/wpa_supplicant/
 mkdir -p /etc/console-setup/
 ln -sf /tmp/hosts /etc/hosts
@@ -79,6 +80,7 @@ ln -sf /tmp/cached_UTF-8_del.kmap.gz /etc/console-setup/cached_UTF-8_del.kmap.gz
 ln -sf /boot/firmware/www-public /var/www/html/www-public
 ln -sf /tmp/20-noglamor.conf /usr/share/X11/xorg.conf.d/20-noglamor.conf
 ln -sf /tmp/99-v3d.conf /etc/X11/xorg.conf.d/99-v3d.conf
+ln -sf /tmp/network-interfaces /etc/network/interfaces
 
 systemctl daemon-reload
 
@@ -112,6 +114,7 @@ systemctl enable kiosk-autossh
 systemctl enable kiosk-watchdog
 systemctl enable kiosk-set-hostname
 systemctl enable kiosk-locale
+systemctl enable kiosk-set-network-config
 systemctl enable ntpdate
 systemctl enable lightdm
 systemctl enable nginx
