@@ -100,6 +100,10 @@ Adding your own SSH keys can be done by creating a authorized_keys file.
 If you want to use the autossh tunneling features, copy an SSH private key as either "id_rsa" or "id_ed25519".  
 The splash screen can be customized by replacing (or entirely removing) `splash.png`.
 
+The network configuration can be overridden by placing a file `network-interfaces` on the FAT32 partition.
+It will be made available as `/etc/network/interfaces`. See [`kiosk-set-network-config`](https://github.com/Manawyrm/AnotterKiosk/blob/main/kiosk_skeleton/usr/bin/kiosk-set-network-config)
+for the defaults.
+
 ## HTTP watchdog functionality
 Browsers are complex, networks are unstable and software can be buggy.   
 In order to get the highest reliability possible, self-hosted websites can be modified to include a heartbeat/watchdog functionality.
