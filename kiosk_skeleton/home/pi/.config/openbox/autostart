@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# regardless of which shell is specified in the shebag, this script runs in sh
 
 # display splash screen as Openbox background
 if [ -f /boot/firmware/splash.png ]; then
@@ -131,6 +132,41 @@ chromium --start-fullscreen \
 		 ${CHROME_LOW_END_FLAGS} \
 		 ${CHROME_CACHE_FLAGS} \
 		 ${URL} &
+
+for i in $(seq 4)
+do
+	URLN=$(get-ini /boot/firmware/kioskbrowser.ini browser$i url)
+	POSN=$(get-ini /boot/firmware/kioskbrowser.ini browser$i pos)
+	if [ -n "${POSN}" ] && [ -n "${URLN}" ]
+	then
+		chromium --start-fullscreen \
+			--user-data-dir=$(mktemp -d) \
+			--window-position=${POSN} \
+			--allow-insecure-localhost \
+			--autoplay-policy=no-user-gesture-required \
+			--check-for-update-interval=1 \
+			--disable-component-update \
+			--disable-features=Translate \
+			--disable-features=TranslateUI \
+			--disable-infobars \
+			--disable-pinch \
+			--disable-session-crashed-bubble \
+			--disable-smooth-scrolling \
+			--kiosk \
+			--noerrdialogs \
+			--overscroll-history-navigation=0 \
+			--simulate-critical-update \
+			--simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' \
+			--touch-events=enabled \
+			--process-per-site \
+			--no-memcheck \
+			${CHROME_DARK_MODE_FLAGS} \
+			${CHROME_GPU_FLAGS} \
+			${CHROME_LOW_END_FLAGS} \
+			${CHROME_CACHE_FLAGS} \
+			${URLN} &
+	fi
+done
 
 # if a cache clearing interval is specified, launch the cache-clear-timer (while true, sleep, rm -rf)
 CACHE_CLEAR=$(get-ini /boot/firmware/kioskbrowser.ini browser cache_clear_interval)
