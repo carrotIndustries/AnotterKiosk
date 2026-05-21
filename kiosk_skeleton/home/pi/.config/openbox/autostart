@@ -33,7 +33,7 @@ unclutter -idle 1 -root &
 AUDIO_DEVICE=$(get-ini /boot/firmware/kioskbrowser.ini audio device)
 if [ -n "${AUDIO_DEVICE}" ]
 then
-	echo "pcm.!default \"${AUDIO_DEVICE}\"" > /tmp/asoundrc
+	echo "pcm.!default \"${AUDIO_DEVICE}\"" > /kiosk-tmp/asoundrc
 fi
 
 # set a custom resolution (if specified)

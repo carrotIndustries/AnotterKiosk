@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NETWORK_CONFIG=/boot/firmware/network-interfaces
-NETWORK_CONFIG_DEST=/tmp/network-interfaces
+NETWORK_CONFIG_DEST=/kiosk-tmp/network-interfaces
 
 if [ -f "${NETWORK_CONFIG}" ]; then
 	cp "${NETWORK_CONFIG}" "${NETWORK_CONFIG_DEST}"
